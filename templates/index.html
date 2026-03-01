@@ -1,136 +1,56 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MINI WALLET Lab</title>
-</head>
-<body>
-    <header>
+{% extends "layout.html" %}
 
-        <div>
-            <p class="storeName">mini wallet lab</p>
+{% block content %}
+    <main class="home">
+        <section class="heroSection"
+        style="background-image: url('{{ url_for('static', filename='images/someday.jpg') }}');
+        width: 100%;
+        height: 750px;
+        background-position: center 47%;
+        background-size: cover;
+        background-repeat: no-repeat;">
+            <div class="heroSectionInner">
+                <h1><span class="upperCase">mini wallet l</span>ab</h1>
+            </div>
+        </section>
 
-            <nav>
-                <div>
-                    <div><a href="{{url_for('search.search')}}">検索</a></div>
-                    <div><a href="{{url_for('mypage.mypage')}}">マイページ</a></div>
-                    <div><a href="{{url_for('cart.cart')}}">カート</a></div>
-                </div>
-                <div>
-                    {% if user_name != None %}
-                        <!-- <p>ログイン： {{ user_name }} 様</p> -->
-                        <!-- postはformしかダメ。getならaタグでOK -->
-                        <form action="/logout" method="post">
-                            <button type="submit" name="btn" value="logout">ログアウト</button>
-                        </form>
-                    {% else %}
-                        <!-- <p>ゲスト 様</p>
-                        <p>ログインしていません</p> -->
-                        <form action="/login" method="get">
-                            <button type="submit" name="btn" value="login">ログイン</button>
-                        </form>
-                    {% endif %}
-                        <form action="/admin_login" method="get">
-                            <button type="submit" name="btn" value="admin_login">管理者ログイン</button>
-                        </form>                    
-                </div>
-            </nav>
-        </div>
+        <section class="captionSection">
+            <p><span class="upperCase">mini wallet l</span>ab では、キャッシュレス時代にぴったりの、<br>
+                小さなお財布を制作しています。</p>
+        </section>
 
-        <nav>
-            <ul>
-                <li><a href="/">home</a></li>
-                <li><a href="{{url_for('products.products')}}">products</a></li>
-                <!-- app.py の @app.route の下にある products という関数を url_for に指定すると、
-                その関数を持つ @app.route にルーティングしてくれる。 -->
-                <li><a href="{{url_for('pages.about')}}">about</a></li>
-                <li><a href="{{url_for('pages.news')}}">news</a></li>
-                <li><a href="{{url_for('pages.store')}}">store</a></li>
-            </ul>
-        </nav>
-
-    </header>
-
-    {% block content %}
-        <main>
-            <section class="heroSection">
-                <div>
-                    <h1>mini wallet lab</h1>
-                </div>
-            </section>
-            <section class="captionSection">
-                <p>MINI WALLET Lab では、キャッシュレス時代にぴったりの、<br>
-                    小さなお財布を制作しています。</p>
-                <hr>
-            </section>
-            <section class="adProducts">
-                <div>
-                    <div>
-                        <div>
-                            <h2>ちょうどいいを、丁寧に。</h2>
-                            <h3>Just Day SERIES</h3>
-                            <div>
-                                <p>丁寧な暮らしにそっと寄り添いたいという想いを込めて、<br>
-                                    手に馴染み長く使って頂けるデザインを目指しました。
-                                    </p>
-                                <p>当店のこだわりの詰まった一品です。</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div></div>
-                </div>
-                <div>
-                    <div></div>                
-                    <div>
-                        <div>
-                            <h2>ミニマルな暮らしを実現する、<br>
-                                カラフルなお財布。</h2>
-                            <h3>Someday SERIES</h3>
-                            <div>
-                                <p>機能は賢く最小限でも、暮らしに色を添える存在でありたい。</p>
-                                <p>そんな願いから生まれました。</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-        </main>    
-    
-    {% endblock %}
-
-
-    <footer>
-
-        <div>
+        <!-- <section class="adProducts">
             <div>
                 <div>
-                    <ul>
-                        <li><a href="">お買い物ガイド</a></li>
-                        <li><a href="">特定商取引法について</a></li>
-                        <li><a href="">ご利用規約</a></li>
-                        <li><a href="">プライバシーポリシー</a></li>                    
-                    </ul>
+                    <div>
+                        <h2>ちょうどいいを、丁寧に。</h2>
+                        <h3>Just Day SERIES</h3>
+                        <div>
+                            <p>丁寧な暮らしにそっと寄り添いたいという想いを込めて、<br>
+                                手に馴染み長く使って頂けるデザインを目指しました。
+                                </p>
+                            <p>当店のこだわりの詰まった一品です。</p>
+                        </div>
+                    </div>
                 </div>
+                <div></div>
+            </div>
+            <div>
+                <div></div>                
                 <div>
-                    <ul>
-                        <li><a href="">会社概要</a></li>
-                        <li><a href="">お問い合わせ</a></li>               
-                    </ul>
+                    <div>
+                        <h2>ミニマルな暮らしを実現する、<br>
+                            カラフルなお財布。</h2>
+                        <h3>Someday SERIES</h3>
+                        <div>
+                            <p>機能は賢く最小限でも、暮らしに色を添える存在でありたい。</p>
+                            <p>そんな願いから生まれました。</p>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section> -->
 
-            <div class="snsArea">
-                <div><a href="">X</a></div>
-                <div><a href="">facebook</a></div>
-                <div><a href="">Instagram</a></div>
-            </div>      
-        </div>
+    </main>    
 
-        <small>mini wallet lab 2026</small>
-
-    </footer>
-
-</body>
-</html>
+{% endblock %}
