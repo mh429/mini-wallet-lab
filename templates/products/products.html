@@ -3,58 +3,69 @@
 {% block content %}
     <main>
 
-        <section class="selectBar">
-            <div>
-                <p></p>
-            </div>
-            <div>
-                <p></p>
-            </div>
-            <div>
-                <p></p>
-            </div>
+        <div class="contentsWrapper">
+            <!-- <section class="selectBar">
+                <div>
+                    <p></p>
+                </div>
+                <div>
+                    <p></p>
+                </div>
+                <div>
+                    <p></p>
+                </div>
+            </section> -->
 
-        </section>
+            <section class="productsSection">
 
-        <section class="productsSection">
+                {% for product in products %}
+                <a href="{{url_for('products.product_detail', product_id=product.id)}}">
+                    <div class="productThumb">
+                        <img src="{{ url_for('static', filename=product.image_path) }}" alt="商品画像">
+                        <p class="series">{{product.series}}</p>
+                        <p class="color">{{product.color_detail}}</p>
+                        <p class="price">￥{{ "{:,}".format(product.price) }}</p>
+                    </div>
+                </a>
+                <!-- product_detailはFlaskの関数名（def product_detail） 
+                Flask は
+                「関数名 → @app.route で紐づいているURL」
+                を自動で引いてくれる。
+                （http://localhost:5000/products/1　が開く）-->
 
-            <h1>商品一覧</h1>
+                    <!-- <table border="1">
+                        <tr>
+                            <td>商品番号</td>
+                            <td>{{product.id}}</td>
+                        </tr>
+                        <tr>
+                            <td>販売価格</td>
+                            <td>{{product.price}}</td>
+                        </tr>
+                        <tr>
+                            <td>シリーズ</td>
+                            <td>{{product.series}}</td>
+                        </tr>
+                        <tr>
+                            <td>色</td>
+                            <td>{{product.color}}</td>
+                        </tr>
+                        <tr>
+                            <td>画像URL</td>
+                            <td>{{product.image_path}}</td>
+                        </tr>
+                        <tr>
+                            <td><a href="{{url_for('products.product_detail', product_id=product.id)}}">詳細</a></td>
+                        </tr>
 
-            {% for product in products %}
-                <table border="1">
-                    <tr>
-                        <td>商品番号</td>
-                        <td>{{product.id}}</td>
-                    </tr>
-                    <tr>
-                        <td>販売価格</td>
-                        <td>{{product.price}}</td>
-                    </tr>
-                    <tr>
-                        <td>シリーズ</td>
-                        <td>{{product.series}}</td>
-                    </tr>
-                    <tr>
-                        <td>色</td>
-                        <td>{{product.color}}</td>
-                    </tr>
-                    <tr>
-                        <td>画像URL</td>
-                        <td>{{product.image_path}}</td>
-                    </tr>
-                    <tr>
-                        <td><a href="{{url_for('products.product_detail', product_id=product.id)}}">詳細</a></td>
-                        <!-- product_detailはFlaskの関数名（def product_detail） 
-                        Flask は
-                        「関数名 → @app.route で紐づいているURL」
-                        を自動で引いてくれる。
-                        （http://localhost:5000/products/1　が開く）-->
-                    </tr>
+                    </table> -->
+                {% endfor %}
 
-                </table>
-            {% endfor %}
+            </section>
 
-        </section>
+        </div>
+
+
 
     </main>
 {% endblock %}

@@ -3,10 +3,12 @@
 {% block content %}
 
     <main>
-    <h1>ログイン成功</h1>
+        <div class="result">
+            <h2>ログインしました！</h2>
 
-    <div><a href="{{url_for('cart.cart')}}">カートへ</a></div>
-
+            <div><a href="{{url_for('cart.cart')}}">カートへ</a></div>
+            <div><a href="{{url_for('mypage.mypage')}}">マイページへ</a></div>
+        </div>
     </main>
 
 {% endblock %}

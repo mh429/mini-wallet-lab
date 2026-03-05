@@ -13,13 +13,25 @@ body {
 }
 main {
   margin-top: 75px;
-  min-height: 800px;
+  min-height: 600px;
+}
+.contentsWrapper {
+  width: 1000px;
+  margin: 0 auto;
+}
+.contentsWrapperMin {
+  width: 500px;
+  margin: 0 auto 200px;
 }
 h1 {
-  font-size: 60px;
+  font-size: 40px;
+  padding-top: 50px;
+  padding-bottom: 70px;
+  text-align: center;
 }
 h2 {
-  font-size: 30px;
+  font-size: 20px;
+  padding-bottom: 30px;
 }
 h3 {
   font-size: 20px;
@@ -30,16 +42,53 @@ p {
   line-height: 1.4em;
 }
 button {
-  padding: 5px 10px;
+  padding: 8px 15px;
   border: 1px solid var(--black);
-  background-color: var(--white);
-  border-radius: 5px;
+  background-color: var(--black);
+  color: var(--white);
   font-size: 12px;
+}
+.btn150 {
+  width: 150px;
+  text-align: center;
+}
+.centerBtn {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
 }
 input {
   border: 1px solid var(--black);
   border-radius: 2px;
   padding: 2px 4px;
+  font-size: 14px;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+input[type="radio"],
+input[type="checkbox"] {
+  appearance: auto;
+  -webkit-appearance: auto;
+  -moz-appearance: auto;
+}
+select {
+  border: 1px solid var(--black);
+  border-radius: 2px;
+  font-size: 14px;
+  appearance: auto;
+  -webkit-appearance: auto;
+  -moz-appearance: auto;
+}
+.shortInput {
+  width: 150px;
+}
+.middleInput {
+  width: 200px;
+}
+.semiLongInput {
+  width: 300px;
 }
 .upperCase {
   text-transform: uppercase;
@@ -109,6 +158,14 @@ header .menu2 {
   justify-content: space-between;
   gap: 5px;
 }
+.menu2 button {
+  padding: 5px 10px;
+  border: 1px solid var(--black);
+  background-color: var(--white);
+  color: var(--black);
+  border-radius: 5px;
+  font-size: 12px;
+}
 /* .menu2 button {
   border: 1px solid var(--gray2);
   background-color: var(--white);
@@ -151,7 +208,7 @@ footer .fotterMenu {
 footer .menuArea {
   display: flex;
   justify-content: space-between;
-  gap: 70px;
+  gap: 150px;
 }
 footer li {
   font-size: 14px;
@@ -187,6 +244,7 @@ footer .instagram svg {
 }
 footer small {
   font-size: 11px;
+  color: var(--white);
 }
 
 /* HOME */
@@ -221,6 +279,219 @@ footer small {
   margin: 20px auto 0;
   background-color: var(--black);
   display: block;
+}
+
+/* PRODUCTS */
+.productsSection {
+  padding-top: 100px;
+  padding-bottom: 250px;
+  display: grid;
+  grid-template-columns: repeat(3,300px);
+  gap: 50px;
+}
+.productThumb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.productThumb img {
+  width: 300px;
+  height: auto;
+}
+.productThumb .series {
+  margin-top: 5px;
+  font-size: 15px;
+  font-weight: bold;
+}
+.productThumb .color {
+  margin-top: 1px;
+  font-size: 10px;
+}
+.productThumb .price {
+  margin-top: 4px;
+  font-size: 12px;
+}
+
+/* PRODUCTS_detail */
+.productDetailSection {
+  padding-top: 100px;
+  padding-bottom: 250px;
+  display: flex;
+  gap: 120px;
+}
+.productDetailSection .left img {
+  width: 440px;
+  height: 340px;
+}
+.right {
+  width: 440px;
+}
+.productDetailSection .series {
+  font-size: 24px;
+  font-weight: bold;
+}
+.productDetailSection .color {
+  margin-top: 1px;
+  font-size: 20px;
+}
+.productDetailSection .price {
+  margin-top: 4px;
+  font-size: 16px;
+}
+.productDetailSection form {
+  margin-top: 40px;
+}
+.productDetailSection input {
+  width: 60px;
+}
+
+.productDetailSection .quantityCart {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.productDetailSection .id {
+  margin-top: 10px;
+  font-size: 12px;
+}
+.productDetailSection .caption {
+  margin-top: 40px;
+  font-size: 14px;
+}
+
+/* カート */
+.cartWrapper {
+  padding-bottom: 70px ;
+}
+.empty {
+  text-align: center;
+}
+.cartItem {
+  display: grid;
+  grid-template-columns: 40% 30% 30%;
+  grid-auto-rows: 50px;
+}
+.cartItem .quantity {
+  text-align: right;
+}
+.cartItem .subtotal {
+  text-align: right;
+}
+.total {
+  padding-top: 10px;
+  text-align: right;
+}
+.goukei {
+  padding-right: 50px;
+}
+
+/* 購入画面 */
+.orderInfo {
+  padding-bottom: 40px;
+  display: grid;
+  grid-template-columns: 200px 390px;
+  gap: 10px;
+}
+.payment {
+  padding-bottom: 80px;
+  display: grid;
+  grid-template-columns: 200px 390px;
+  gap: 10px;
+}
+
+/* ログイン */
+.loginInputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.loginInputs p {
+  width: 550px;
+  /* margin: 0 auto; */
+  display: grid;
+  grid-template-columns: 40% 60%;
+}
+.loginInputs input {
+  margin-bottom: 20px;
+}
+.loginBtn {
+  padding-top: 30px;
+  text-align: center;
+}
+.loginBtn button {
+  width: 150px;
+}
+.toMemberRegistrationBtn {
+  margin-top: 20px;
+  text-align: center;
+}
+.toMemberRegistrationBtn button {
+  width: 150px;
+}
+
+/* 新規会員登録 */
+.memberRegistInfo {
+  padding-bottom: 40px;
+  display: grid;
+  grid-template-columns: 200px 390px;
+  gap: 10px;
+  font-size: 14px;
+}
+
+/* マイページ */
+.myPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.memberInfo {
+  width: 300px;
+  padding-bottom: 40px;
+  display: grid;
+  grid-template-columns: 150px 150px;
+  gap: 10px;
+}
+.orderHistory {
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 355px;
+  border: 1px solid var(--black);
+} 
+.orderHistory p {
+  padding-bottom: 10px;
+} 
+.orderDetailInfo {
+  display: grid;
+  grid-template-columns: 200px 100px;
+  gap: 5px;
+}
+.orderDetailInfo .quantity {
+  text-align: right;
+}
+
+
+
+/* ログイン成功画面、ログアウト画面、購入完了画面 */
+.result {
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+.result h2 {
+  font-size: 20px;
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+.result p {
+  padding-bottom: 40px;
+}
+.result a {
+  display: block;
+  padding-bottom: 20px;
+  text-decoration: underline;
+  font-size: 14px;
 }
 
 

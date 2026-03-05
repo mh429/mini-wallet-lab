@@ -2,25 +2,30 @@
 
 {% block content %}
     <main>
-    <h1>購入する</h1>
+    <div class="contentsWrapperMin">
 
-    <p>＜購入内容＞</p>
+    <h1>購入画面</h1>
 
-    {% for p in cart_items %}
-        <p>ID：{{ p.id }}</p>
-        <p>商品名：{{ p.name }}</p>
-        <p>価格：{{ p.price }}円</p>
-        <p>数量：{{ p.qty }}個</p>
-        <p>小計：{{ p.subtotal }}円</p>
-    {% endfor %}
+    <h2>＜購入内容＞</h2>
 
-    <hr>
-    <p>合計金額：{{ total }}円</p>
+    <div class="cartWrapper">
+      {% for p in cart_items %}
+          <div class="cartItem">
+              <p class="name">{{ p.name }}</p>
+              <p class="quantity">数量: {{ p.qty }}</p>
+              <p class="subtotal">￥{{ "{:,}".format(p.subtotal) }}</p>
+          </div>
+      {% endfor %}
+      <hr>
+      <p class="total"><span class="goukei">合計</span>￥{{ "{:,}".format(total) }}</p>
+    </div>
+
+
 
 
         <form action="/purchase_success" method="post">
 
-            <p>＜注文者情報＞</p>
+            <h2>＜注文者情報＞</h2>
 
             <!-- 商品IDと数量 -->
             {% for p in cart_items %}
@@ -34,88 +39,86 @@
               <input type="hidden" name="orderer" value="{{ user_info.name }}">
               <input type="hidden" name="mail" value="{{ user_info.id }}">
 
-              <p>氏名：{{user_info.name}}</p>
-              <p>メールアドレス：{{user_info.id}}</p>
+              <div class="orderInfo">
+                <p>氏名：</p><p>{{user_info.name}} 様</p>
+                <p>メールアドレス：</p><p>{{user_info.id}}</p>
 
-              <p>
-                <label for="tel">電話番号：</label>
-                <input type="text" id="tel" name="tel" value="{{ user_info.tel }}" required>
-              </p>
+                <p><label for="tel">電話番号：</label></p>
+                <input type="text" id="tel" name="tel" value="{{ user_info.tel }}" required class="middleInput">
+              </div>
 
-              <p>＜配送先情報＞</p>
 
-              <p>
-                <label for="zip">郵便番号：</label>
-                <input type="text" id="zip" name="zip" value="{{ user_info.zip }}" required>
-              </p>
-              <p>
-                <label for="address">住所：</label>
+              <h2>＜配送先情報＞</h2>
+
+              <div class="orderInfo">
+                <p><label for="zip">郵便番号：</label></p>
+                <input type="text" id="zip" name="zip" value="{{ user_info.zip }}" required class="shortInput">
+
+                <p><label for="address">住所：</label></p>
                 <input type="text" id="address" name="address1" value="{{ user_info.address1 }}" required>
-              </p>
-              <p>
+
+                <p></p>
                 <input type="text" id="address2" name="address2" value="{{ user_info.address2 }}" required placeholder="番地">
-              </p>
-              <p>
+
+                <p></p>
                 <input type="text" id="address3" name="address3" value="{{ user_info.address3 }}" placeholder="マンション名以下（任意）">
-              </p>
-              <p>
-                <label for="recipient">宛先者：</label>
-                <input type="text" id="recipient" name="recipient" value="{{ user_info.name }}" required>
-              </p>
+
+                <p><label for="recipient">宛先者：</label></p>
+                <input type="text" id="recipient" name="recipient" value="{{ user_info.name }}" required class="semiLongInput">
+              </div>
 
             {% else %}
 
               <input type="hidden" id="member_id" name="member_id" value="">
 
-              <p>
-                <label for="orderer">氏名：</label>
-                <input type="text" id="orderer" name="orderer" value="" required>
-              </p>
-              <p>
-                <label for="mail">メールアドレス：</label>
-                <input type="mail" id="mail" name="mail" value="" required>
-              </p>
-              <p>
-                <label for="tel">電話番号：</label>
-                <input type="text" id="tel" name="tel" value="" required>
-              </p>
+              <div class="orderInfo">
+                <p><label for="orderer">氏名：</label></p>
+                <input type="text" id="orderer" name="orderer" value="" required class="semiLongInput">
+                
+                <p><label for="mail">メールアドレス：</label></p>
+                <input type="email" id="mail" name="mail" value="" required>
 
-              <p>＜配送先情報＞</p>
+                <p><label for="tel">電話番号：</label></p>
+                <input type="text" id="tel" name="tel" value="" required class="middleInput">
+              </div>
 
-              <p>
-                <label for="zip">郵便番号：</label>
-                <input type="text" id="zip" name="zip" value="" required>
-              </p>
-              <p>
-                <label for="address">住所：</label>
+              <h2>＜配送先情報＞</h2>
+
+              <div class="orderInfo">
+                <p><label for="zip">郵便番号：</label></p>
+                <input type="text" id="zip" name="zip" value="" required class="shortInput">
+
+                <p><label for="address">住所：</label></p>
                 <input type="text" id="address" name="address1" value="" required>
-              </p>
-              <p>
+
+                <p></p>
                 <input type="text" id="address2" name="address2" value="" required placeholder="番地">
-              </p>
-              <p>
+                
+                <p></p>
                 <input type="text" id="address3" name="address3" value="" placeholder="マンション名以下（任意）">
-              </p>
-              <p>
-                <label for="recipient">宛先者：</label>
-                <input type="text" id="recipient" name="recipient" value="" required>
-              </p>
+                
+                <p><label for="recipient">宛先者：</label> </p>
+                <input type="text" id="recipient" name="recipient" value="" required class="semiLongInput">
+              </div>
 
             {% endif %}
 
-            <p>
-              <label for="payment">支払方法：</label>
-              <select id="payment" name="payment">
+            <div class="payment">
+              <p><label for="payment">支払方法：</label></p>
+              <select id="payment" name="payment" class="middleInput">
                 <option value="1">クレジットカード</option>
                 <option value="2">電子決済</option>
                 <option value="3">銀行振込</option>
               </select>
-            </p>
+            </div>
 
-            <p>
-                <button type="submit" name="btn" value="login">購入する</button>
-            </p>
+
+            <div class="centerBtn">
+                <button type="submit" name="btn" value="login" class="btn150">購入する</button>
+            </div>
+
         </form>
 
+      </div>
     </main>
 {% endblock %}

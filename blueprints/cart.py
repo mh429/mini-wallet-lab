@@ -1,19 +1,15 @@
-from flask import Blueprint, render_template, request, make_response
+from flask import Blueprint, render_template, request, make_response, redirect
 from datetime import datetime
 import mysql.connector
 
 # Blueprint名はcart
 cart_bp = Blueprint('cart',__name__)
 
-
 # ==============================
-# カート表示処理('/cart')
+# カート追加処理('/add_to_cart')
 # ==============================
-@cart_bp.route('/cart')
-def cart():
-    
-    # クッキーからユーザ情報を取得
-    user_id = request.cookies.get('user_id')
+@cart_bp.route('/add_to_cart')
+def add_to_cart():
 
     #cookieからカート情報を取得。存在しない場合はNoneが格納される
     cart_item = request.cookies.get('cart_item')
@@ -41,6 +37,33 @@ def cart():
     # 文字列に戻す
     new_cart = ",".join([f"{pid}:{qty}" for pid, qty in cart_dict.items()])
 
+    #レスポンスオブジェクトを作成し、商品情報をテンプレートに渡す
+    response = make_response(redirect('/cart'))
+    #商品情報をCookieに保存
+    response.set_cookie('cart_item',new_cart,max_age=60*60*24*1)   #1日間有効
+    #レスポンスオブジェクトを返す
+    return response
+
+# ==============================
+# カート表示処理('/cart')
+# ==============================
+@cart_bp.route('/cart')
+def cart():
+    
+    # クッキーからユーザ情報を取得
+    user_id = request.cookies.get('user_id')
+
+    #cookieからカート情報を取得。存在しない場合はNoneが格納される
+    cart_item = request.cookies.get('cart_item')
+
+    cart_dict = {}
+
+    # カートがある場合
+    if cart_item:
+        items = cart_item.split(",")
+        for item in items:
+            pid, qty = item.split(":")
+            cart_dict[pid] = int(qty)
 
     # print(cart_dict)
     # こんな形{'1': 1, '4': 4, '3': 2}
@@ -92,8 +115,6 @@ def cart():
 
     #レスポンスオブジェクトを作成し、商品情報をテンプレートに渡す
     response = make_response(render_template('cart/cart.html',cart_items=cart_items,total=total,user_id=user_id))
-    #商品情報をCookieに保存
-    response.set_cookie('cart_item',new_cart,max_age=60*60*24*1)   #1日間有効
     #レスポンスオブジェクトを返す
     return response
 
@@ -189,6 +210,8 @@ def purchase():
 
 # ==============================
 # 購入完了画面表示('/purchase_success')
+# 
+# ※現状、リロードする度購入されてしまうのでこちらも処理を分けないといけない
 # ==============================
 @cart_bp.route('/purchase_success',methods=["POST"])
 def purchase_success():

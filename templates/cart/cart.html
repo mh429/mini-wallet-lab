@@ -2,50 +2,59 @@
 
 {% block content %}
     <main>
+            <div class="contentsWrapperMin">
 
-        <section>
+                <h1>カート</h1>
 
-            <h1>カート</h1>
+                {% if cart_items %}
+                <!-- 空配列ならfalse -->
 
-            {% if cart_items %}
-            <!-- 空配列ならfalse -->
-                <p>カートに入っています。</p>
+                <div class="cartWrapper">
+                    {% for p in cart_items %}
+                        <div class="cartItem">
+                            <p class="name">{{ p.name }}</p>
+                            <p class="quantity">数量: {{ p.qty }}</p>
 
-                {% for p in cart_items %}
-                    <p>ID：{{ p.id }}</p>
-                    <p>商品名：{{ p.name }}</p>
-                    <p>価格：{{ p.price }}円</p>
-                    <p>数量：{{ p.qty }}個</p>
-                    <p>小計：{{ p.subtotal }}円</p>
-                {% endfor %}
+                            <!-- <form action="/update_cart" method="post">
+                                <input type="hidden" name="product_id" value="{{ p.id }}">
+                                <p class="quantity">数量: 
+                                    <input type="number" name="quantity" value="{{ p.qty }}" min="1" max="{{p.stock}}">
+                                </p>
+                                <button type="submit">変更する</button>
+                            </form> -->
 
-                <hr>
-                <p>合計金額：{{ total }}円</p>
+                            <p class="subtotal">￥{{ "{:,}".format(p.subtotal) }}</p>
+                        </div>
+                    {% endfor %}
+                    <hr>
+                    <p class="total"><span class="goukei">合計</span>￥{{ "{:,}".format(total) }}</p>
+                </div>
 
-                {% if user_id %}
+                    {% if user_id %}
+                        <div class="centerBtn">
+                            <form action="/purchase" method="get">
+                                <button type="submit" name="btn" value="purchase" class="btn150">購入する</button>
+                            </form>
+                        </div>
+                    {% else %}
+                        <div class="centerBtn">
+                            <form action="/login" method="get">
+                                <button type="submit" name="btn" value="login_purchase">ログインして購入する</button>
+                            </form>
 
-                    <form action="/purchase" method="get">
-                        <button type="submit" name="btn" value="purchase">購入する</button>
-                    </form>
+                            <form action="/purchase" method="get">
+                                <button type="submit" name="btn" value="purchase">ログインせずに購入する</button>
+                            </form>
+                        </div>
+                    {% endif %}
+
 
                 {% else %}
-
-                    <form action="/login" method="get">
-                        <button type="submit" name="btn" value="login_purchase">ログインして購入する</button>
-                    </form>
-
-                    <form action="/purchase" method="get">
-                        <button type="submit" name="btn" value="purchase">ログインせずに購入する</button>
-                    </form>
-
+                <div class="cartWrapper">
+                    <p class="empty">カートは空です</p>
+                </div>
                 {% endif %}
 
-
-            {% else %}
-                <p>カートは空です</p>
-            {% endif %}
-
-        </section>
-
+            </div>
     </main>
 {% endblock %}

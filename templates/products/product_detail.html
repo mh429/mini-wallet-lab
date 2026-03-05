@@ -2,52 +2,39 @@
 
 {% block content %}
     <main>
+        <div class="contentsWrapper">
+
+            <!-- <section class="breadcrumb">
+            </section> -->
+
+            <section class="productDetailSection">
+
+                <div class="left">
+                    <img src="{{ url_for('static', filename=product.image_path) }}" alt="商品画像">
+                </div>
+
+                <div class="right">
+                    <p class="series">{{product.series}}</p>
+                    <p class="color">{{product.color_detail}}</p>
+                    <p class="price">￥{{ "{:,}".format(product.price) }}</p>
+
+                    <form action="/add_to_cart" method="GET">
+                        <div class="quantityCart">
+                            <p>数量: <input type="number" name="quantity" value="1" min="1" max="{{product.stock}}"></p>
+                            <button type="submit">カートに入れる</button>
+                        </div>
+                        <p class="id">商品番号: 0000{{product.id}}</p>
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                    </form>        
+
+                    <p class="caption">{{product.caption}}</p>        
+                </div>
+            </section>
+
+            
+        </div>
         
-        <section class="breadcrumb">
-        </section>
-        <section class="productDetailSection">
 
-            <h1>商品詳細</h1>
-
-            <form action="/cart" method="GET">
-                <table border="1">
-                    <tr>
-                        <td>商品番号</td>
-                        <td><input type="hidden" name="product_id" value="{{ product.id }}">{{product.id}}</td>
-                    </tr>
-                    <tr>
-                        <td>シリーズ名</td>
-                        <td>{{product.series}}</td>
-                    </tr>
-                    <tr>
-                        <td>カラー</td>
-                        <td>{{product.color}}</td>
-                    </tr>
-                    <tr>
-                        <td>販売価格</td>
-                        <td>{{product.price}}</td>
-                    </tr>
-                    <tr>
-                        <td>在庫数</td>
-                        <td>{{product.stock}}</td>
-                    </tr>
-                    <tr>
-                        <td>説明</td>
-                        <td>{{product.caption}}</td>
-                    </tr>
-                    <tr>
-                        <td>数量</td>
-                        <td><input type="number" name="quantity" value="1" min="1" max="{{product.stock}}"></td>
-                    </tr>
-                    <tr>
-                        <td><button type="submit">カートに入れる</button></td>
-                    </tr>
-                </table>
-
-            </form>
-
-
-        </section>
 
     </main>
 {% endblock %}

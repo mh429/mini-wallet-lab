@@ -32,6 +32,7 @@ CREATE TABLE t_product (
   price INT NOT NULL,
   series_id INT NOT NULL,
   color_id INT NOT NULL,
+  color_detail VARCHAR(100) NOT NULL,
   caption VARCHAR(500),
   stock INT NOT NULL,
   image_path VARCHAR(255),
@@ -41,31 +42,72 @@ CREATE TABLE t_product (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO t_product
-(name, price, series_id, color_id, caption, stock, image_path, is_active)
+(name, price, series_id, color_id, color_detail, caption, stock, image_path, is_active)
 VALUES
-('Just Day / Black', 18500, 1, 6, '丁寧な暮らしにそっと寄り添いたいという想いを込めて、手に馴染み長く使って頂けるデザインを目指しました。当店のこだわりの詰まった一品です。', 10, '/images/products/justday_black.jpg', 1),
-('Just Day / Yellow', 18500, 1, 1, '丁寧な暮らしにそっと寄り添いたいという想いを込めて、手に馴染み長く使って頂けるデザインを目指しました。当店のこだわりの詰まった一品です。', 10, '/images/products/justday_yellow.jpg', 1),
-('Just Day / Brown', 18500, 1, 7, '丁寧な暮らしにそっと寄り添いたいという想いを込めて、手に馴染み長く使って頂けるデザインを目指しました。当店のこだわりの詰まった一品です。', 10, '/images/products/justday_brown.jpg', 1),
-('Someday / Lime Green', 16900, 2, 5, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_limegreen.jpg', 1),
-('Someday / Magenta', 16900, 2, 2, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_magenta.jpg', 1),
-('Someday / Cafe Brown', 16900, 2, 7, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_cafebrown.jpg', 1),
-('Someday / Purple', 16900, 2, 4, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_purple.jpg', 1),
-('Someday / Wine', 16900, 2, 4, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_wine.jpg', 1),
-('Someday / Pastel Blue', 16900, 2, 3, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_pastelblue.jpg', 1),
-('Someday / Pink', 16900, 2, 2, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_pink.jpg', 1),
-('Someday / Beige', 16900, 2, 1, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_beige.jpg', 1),
-('Someday / Cyan', 16900, 2, 3, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_cyan.jpg', 1),
-('Someday / Gray', 16900, 2, 6, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_gray.jpg', 1),
-('Someday / Green', 16900, 2, 5, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_green.jpg', 1),
-('Someday / Pastel Pink', 16900, 2, 2, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_pastelpink.jpg', 1),
-('Someday / Brown', 16900, 2, 7, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_brown.jpg', 1),
-('Someday / Red', 16900, 2, 2, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_red.jpg', 1),
-('Someday / Matt Black', 16900, 2, 6, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_mattblack.jpg', 1),
-('Someday / Sky Blue', 16900, 2, 3, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_skyblue.jpg', 1),
-('Someday / Salmon Pink', 16900, 2, 2, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_salmonpink.jpg', 1),
-('Someday / Camel', 16900, 2, 7, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_camel.jpg', 1),
-('Someday / Blue', 16900, 2, 3, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_blue.jpg', 1),
-('Someday / Black', 16900, 2, 6, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_black.jpg', 1);
+('Just Day / Black', 18500, 1, 6, 'Black', '丁寧な暮らしにそっと寄り添いたいという想いを込めて、手に馴染み長く使って頂けるデザインを目指しました。当店のこだわりの詰まった一品です。', 10, '/images/products/justday_black.jpg', 1),
+('Just Day / Yellow', 18500, 1, 1, 'Yellow', '丁寧な暮らしにそっと寄り添いたいという想いを込めて、手に馴染み長く使って頂けるデザインを目指しました。当店のこだわりの詰まった一品です。', 10, '/images/products/justday_yellow.jpg', 1),
+('Just Day / Brown', 18500, 1, 7, 'Brown', '丁寧な暮らしにそっと寄り添いたいという想いを込めて、手に馴染み長く使って頂けるデザインを目指しました。当店のこだわりの詰まった一品です。', 10, '/images/products/justday_brown.jpg', 1),
+('Someday / Lime Green', 16900, 2, 5, 'Lime Green', '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_limegreen.jpg', 1),
+('Someday / Magenta', 16900, 2, 2, 'Magenta', '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_magenta.jpg', 1),
+('Someday / Cafe Brown', 16900, 2, 7,'Cafe Brown', '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_cafebrown.jpg', 1),
+('Someday / Purple', 16900, 2, 4, 'Purple', '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_purple.jpg', 1),
+('Someday / Wine', 16900, 2, 4, 'Wine', '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_wine.jpg', 1),
+('Someday / Pastel Blue', 16900, 2, 3, 'Pastel Blue', '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_pastelblue.jpg', 1),
+('Someday / Pink', 16900, 2, 2, 'Pink', '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_pink.jpg', 1),
+('Someday / Beige', 16900, 2, 1, 'Beige', '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_beige.jpg', 1),
+('Someday / Cyan', 16900, 2, 3, 'Cyan', '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_cyan.jpg', 1),
+('Someday / Gray', 16900, 2, 6, 'Gray', '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_gray.jpg', 1),
+('Someday / Green', 16900, 2, 5, 'Green', '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_green.jpg', 1),
+('Someday / Pastel Pink', 16900, 2, 2, 'Pastel Pink', '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_pastelpink.jpg', 1),
+('Someday / Brown', 16900, 2, 7, 'Brown', '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_brown.jpg', 1),
+('Someday / Red', 16900, 2, 2, 'Red', '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_red.jpg', 1),
+('Someday / Matt Black', 16900, 2, 6, 'Matt Black', '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_mattblack.jpg', 1),
+('Someday / Sky Blue', 16900, 2, 3, 'Sky Blue', '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_skyblue.jpg', 1),
+('Someday / Salmon Pink', 16900, 2, 2, 'Salmon Pink', '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_salmonpink.jpg', 1),
+('Someday / Camel', 16900, 2, 7, 'Camel', '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_camel.jpg', 1),
+('Someday / Blue', 16900, 2, 3, 'Blue', '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_blue.jpg', 1),
+('Someday / Black', 16900, 2, 6, 'Black', '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_black.jpg', 1);
+
+-- CREATE TABLE t_product (
+--   id INT AUTO_INCREMENT PRIMARY KEY,
+--   name VARCHAR(100) NOT NULL,
+--   price INT NOT NULL,
+--   series_id INT NOT NULL,
+--   color_id INT NOT NULL,
+--   caption VARCHAR(500),
+--   stock INT NOT NULL,
+--   image_path VARCHAR(255),
+--   is_active TINYINT(1) NOT NULL DEFAULT 1,
+--   FOREIGN KEY (series_id) REFERENCES t_series(id),
+--   FOREIGN KEY (color_id) REFERENCES t_color(id)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- INSERT INTO t_product
+-- (name, price, series_id, color_id, caption, stock, image_path, is_active)
+-- VALUES
+-- ('Just Day / Black', 18500, 1, 6, '丁寧な暮らしにそっと寄り添いたいという想いを込めて、手に馴染み長く使って頂けるデザインを目指しました。当店のこだわりの詰まった一品です。', 10, '/images/products/justday_black.jpg', 1),
+-- ('Just Day / Yellow', 18500, 1, 1, '丁寧な暮らしにそっと寄り添いたいという想いを込めて、手に馴染み長く使って頂けるデザインを目指しました。当店のこだわりの詰まった一品です。', 10, '/images/products/justday_yellow.jpg', 1),
+-- ('Just Day / Brown', 18500, 1, 7, '丁寧な暮らしにそっと寄り添いたいという想いを込めて、手に馴染み長く使って頂けるデザインを目指しました。当店のこだわりの詰まった一品です。', 10, '/images/products/justday_brown.jpg', 1),
+-- ('Someday / Lime Green', 16900, 2, 5, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_limegreen.jpg', 1),
+-- ('Someday / Magenta', 16900, 2, 2, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_magenta.jpg', 1),
+-- ('Someday / Cafe Brown', 16900, 2, 7, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_cafebrown.jpg', 1),
+-- ('Someday / Purple', 16900, 2, 4, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_purple.jpg', 1),
+-- ('Someday / Wine', 16900, 2, 4, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_wine.jpg', 1),
+-- ('Someday / Pastel Blue', 16900, 2, 3, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_pastelblue.jpg', 1),
+-- ('Someday / Pink', 16900, 2, 2, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_pink.jpg', 1),
+-- ('Someday / Beige', 16900, 2, 1, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_beige.jpg', 1),
+-- ('Someday / Cyan', 16900, 2, 3, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_cyan.jpg', 1),
+-- ('Someday / Gray', 16900, 2, 6, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_gray.jpg', 1),
+-- ('Someday / Green', 16900, 2, 5, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_green.jpg', 1),
+-- ('Someday / Pastel Pink', 16900, 2, 2, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_pastelpink.jpg', 1),
+-- ('Someday / Brown', 16900, 2, 7, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_brown.jpg', 1),
+-- ('Someday / Red', 16900, 2, 2, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_red.jpg', 1),
+-- ('Someday / Matt Black', 16900, 2, 6, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_mattblack.jpg', 1),
+-- ('Someday / Sky Blue', 16900, 2, 3, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_skyblue.jpg', 1),
+-- ('Someday / Salmon Pink', 16900, 2, 2, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_salmonpink.jpg', 1),
+-- ('Someday / Camel', 16900, 2, 7, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_camel.jpg', 1),
+-- ('Someday / Blue', 16900, 2, 3, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_blue.jpg', 1),
+-- ('Someday / Black', 16900, 2, 6, '機能は賢く最小限でも、暮らしに色を添える存在でありたい。そんな願いから生まれました。', 5, '/images/products/someday_black.jpg', 1);
 
 -- ④ 会員テーブル t_member
 CREATE TABLE t_member (

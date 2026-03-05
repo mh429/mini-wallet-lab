@@ -13,7 +13,7 @@ def products():
     
     #SQL作成
     sql = """
-        SELECT p.id, p.price, s.series, c.color, p.stock, p.image_path, p.stock
+        SELECT p.id, p.price, s.series, c.color, p.color_detail, p.stock, p.image_path, p.stock
         FROM t_product p
         INNER JOIN t_series s
         ON p.series_id = s.id
@@ -45,7 +45,7 @@ def products():
 def product_detail(product_id):
 
     sql = """
-        SELECT p.id, p.price, s.series, c.color, p.caption, p.stock, p.image_path
+        SELECT p.id, p.price, s.series, c.color, p.color_detail, p.caption, p.stock, p.image_path
         FROM t_product p
         INNER JOIN t_series s
         ON p.series_id = s.id
