@@ -5,8 +5,6 @@
   <div class="contentsWrapperMin">
   <div class="myPage">
 
-
-
   <h1>マイページ</h1>
 
   {% if user_info %}
@@ -54,7 +52,7 @@
 
         <div class="orderHistory">
 
-          <p>購入ID: {{ order.order_id }}</p>
+          <p>購入ID: {{ "%06d"|format(order.order_id) }}</p>
           <p>購入日: {{ order.order_date }}</p>
 
           <p>---購入内容---</p>

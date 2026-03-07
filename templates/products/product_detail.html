@@ -34,7 +34,7 @@
                             {% endif %}
 
                         </div>
-                        <p class="id">商品番号: 0000{{product.id}}</p>
+                        <p class="id">商品番号: {{ "%05d"|format(product.id) }}</p>
                         <input type="hidden" name="product_id" value="{{ product.id }}">
                     </form>        
 
