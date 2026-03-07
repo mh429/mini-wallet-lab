@@ -2,9 +2,23 @@
 
 {% block content %}
 <main>
-  <h1>ニュース</h1>  
+  <div class="contentsWrapperMin">
+  <div class="myPage">
 
-  <p class="preparation">このページは準備中です…</p>
+  <h1 class="withCaption">NEWS</h1> 
+
+  <p class="h1Caption">ニュース</p>
+
+  {% for news in news_list %}
+  <div class="newsItem">
+    <p class="date">{{ news.date }}</p>
+    <h2>{{ news.title }}</h2>
+    <p>{{ news.content }}</p>
+  </div>
+  {% endfor %}
+
+  </div>
+  </div>
 </main>
 
 {% endblock %}

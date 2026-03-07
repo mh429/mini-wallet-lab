@@ -4,6 +4,7 @@
   --black: #000;
   --gray1: #d9d9d9;
   --gray2: #aaa;
+  --gray3: #666;
 }
 body {
   font-family: "Noto Sans JP", sans-serif;
@@ -27,6 +28,14 @@ h1 {
   padding-top: 50px;
   padding-bottom: 70px;
   text-align: center;
+}
+.withCaption {
+  padding-bottom: 20px;
+}
+.h1Caption {
+  text-align: center;
+  /* color: var(--gray3); */
+  padding-bottom: 70px;
 }
 h2 {
   font-size: 20px;
@@ -114,7 +123,6 @@ header {
   flex-direction: column;
   z-index: 100;
 }
-
 header .top {
   height: 50px;
   padding: 0 40px;
@@ -140,6 +148,8 @@ header .menu1 {
   display: flex;
   justify-content: space-between;
   gap: 10px;
+  height: 30px;
+  align-items: center;
 }
 header .menu1 div {
   width: 30px;
@@ -153,6 +163,16 @@ header .menu1 svg {
 header .menu1 .search {
   padding-top: 2px;
   padding-left: 2px;
+}
+header .menu1 .search:hover {
+  opacity: 0.5;
+}
+header .menu1 .invisible {
+  display: none;
+}
+.searchInput {
+  width: 200px;
+  height: 30px;
 }
 header .menu1 .cart {
   padding-top: 3px;
@@ -175,11 +195,6 @@ header .menu2 {
   border-radius: 5px;
   font-size: 12px;
 }
-/* .menu2 button {
-  border: 1px solid var(--gray2);
-  background-color: var(--white);
-  color: var(--gray2);
-} */
 header .bottom {
   height: 25px;
   padding: 0 40px;
@@ -553,6 +568,59 @@ footer small {
 .orderDetailInfo .quantity {
   text-align: right;
 }
+
+/* 店舗一覧 */
+.stores {
+  margin-bottom: 150px;  
+  display: grid;
+  grid-template-columns: repeat(3,313px);
+  gap: 30px;
+}
+.store {
+  width: 313px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--gray2);
+}
+.stores h3 {
+  padding-bottom: 7px;
+}
+
+/* ニュース */
+.newsItem {
+  width: 600px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--gray2);
+}
+.newsItem .date {
+  padding-bottom: 5px;
+  font-size: 12px;
+}
+
+/* アバウト */
+.about {
+  margin-bottom: 150px;
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  justify-content: center;
+}
+.about .left {
+  width: 400px;
+  flex-shrink: 0; /* 縮まないようにする */
+}
+.about .right {
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+
+
 
 /* ログイン成功画面、ログアウト画面、購入完了画面 */
 .result {

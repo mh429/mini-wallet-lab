@@ -29,3 +29,12 @@ function filterColor(color) {
         }
     });
 }
+
+function toggleInvisible() {
+
+    console.log("test3");
+
+    const searchBox = document.querySelector('.searchBox');
+
+    searchBox.classList.toggle('invisible');
+}

@@ -2,9 +2,26 @@
 
 {% block content %}
 <main>
-  <h1>取扱い店舗一覧</h1>  
+  <div class="contentsWrapper">
 
-  <p class="preparation">このページは準備中です…</p>
+  <h1 class="withCaption">STORE</h1> 
+
+  <p class="h1Caption">お取り扱い頂いている店舗一覧</p>
+
+  <div class="stores">
+
+    {% for store in stores %}
+      <div class="store">
+        <h3>{{ store.name }}</h3>
+        <p>{{ store.address }}</p>
+        <p>TEL {{ store.tel }}</p>
+        <p>営業時間：{{ store.hours }}</p>
+      </div>
+    {% endfor %}    
+
+  </div>
+
+  </div>
 </main>
 
 {% endblock %}

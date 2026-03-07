@@ -2,9 +2,30 @@
 
 {% block content %}
 <main>
-  <h1>検索ページ</h1>  
+  <h1>「{{ search_text }}」の検索結果</h1>  
 
-  <p class="preparation">このページは準備中です…</p>
+        <div class="contentsWrapper">
+
+            <section class="productsSection">
+
+                {% for product in products %}
+                <div class="productWrapper" data-series="{{product.series}}" data-color="{{product.color}}">
+                    <a href="{{url_for('products.product_detail', product_id=product.id)}}">
+                        <div class="productThumb">
+                            <div class="imageWraper">
+                                <img src="{{ url_for('static', filename=product.image_path) }}" alt="商品画像">                                
+                            </div>
+                            <p class="series">{{product.series}}</p>
+                            <p class="color">{{product.color_detail}}</p>
+                            <p class="price">￥{{ "{:,}".format(product.price) }}</p>
+                        </div>
+                    </a>
+                </div>
+
+                {% endfor %}
+
+            </section>
+
 </main>
 
 {% endblock %}
