@@ -1,26 +1,20 @@
-{% extends "layout.html" %}
-
-{% block content %}
+{% extends "layout.html" %} {% block content %}
 <main>
   <div class="contentsWrapper">
+    <h1 class="withCaption">STORE</h1>
 
-  <h1 class="withCaption">STORE</h1> 
+    <p class="h1Caption">お取り扱い頂いている店舗一覧</p>
 
-  <p class="h1Caption">お取り扱い頂いている店舗一覧</p>
-
-  <div class="stores">
-
-    {% for store in stores %}
+    <div class="stores">
+      {% for store in stores %}
       <div class="store">
         <h3>{{ store.name }}</h3>
         <p>{{ store.address }}</p>
         <p>TEL {{ store.tel }}</p>
         <p>営業時間：{{ store.hours }}</p>
       </div>
-    {% endfor %}    
-
-  </div>
-
+      {% endfor %}
+    </div>
   </div>
 </main>
 

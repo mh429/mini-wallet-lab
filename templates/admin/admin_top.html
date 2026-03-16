@@ -1,0 +1,14 @@
+{% extends "admin/admin_layout.html" %} {% block content %}
+<main>
+  <h1>管理ページトップ</h1>
+
+  <p>メニューを選択してください。</p>
+
+  <div>
+    <p>{{ today }}</p>
+    <p>受注処理待ち：{{ wait_process }}件</p>
+    <p>発送待ち：{{ wait_send }}件</p>
+  </div>
+</main>
+
+{% endblock %}

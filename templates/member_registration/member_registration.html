@@ -1,69 +1,100 @@
-{% extends "layout.html" %}
-
-{% block content %}
-    <main>
-    <div class="contentsWrapperMin">
-
+{% extends "layout.html" %} {% block content %}
+<main>
+  <div class="contentsWrapperMin">
     <h1>新規会員登録</h1>
 
-        <form action="/member_registration_success" method="post">
-            <div class="memberRegistInfo">
-                <p><label for="mail">メールアドレス：</label></p>
-                <input type="email" id="mail" name="mail" required>
-                
-                <p><label for="name">氏名：</label></p>
-                <input type="text" id="name" name="name" required class="semiLongInput">
-                
-                <p><label for="birthday">生年月日：</label></p>
-                <input type="date" id="birthday" name="birthday" required class="middleInput">
-                
-                <p>性別：</p>
-                <div>
-                    <input type="radio" id="man" name="gender" value="1">
-                    <label for="man">男性</label>
-                    <input type="radio" id="woman" name="gender" value="2">
-                    <label for="woman">女性</label>
-                    <input type="radio" id="other" name="gender" value="3">
-                    <label for="other">その他（回答しない）</label>                    
-                </div>
+    <form action="/member_registration_success" method="post">
+      <div class="memberRegistInfo">
+        <p><label for="mail">メールアドレス：</label></p>
+        <input type="email" id="mail" name="mail" required />
 
-                <p><label for="tel">電話番号：</label></p>
-                <input type="tel" id="tel" name="tel" required class="middleInput">
-                
-                <p><label for="zip">郵便番号：</label></p>
-                <input type="text" id="zip" name="zip" required class="shortInput">
-                
-                <p><label for="address">住所：</label></p>
-                <input type="text" id="address" name="address1" required>
-                
-                <p></p>
-                <input type="text" id="address2" name="address2" required placeholder="番地">
-                
-                <p></p>
-                <input type="text" id="address3" name="address3" placeholder="マンション名以下（任意）">
-                
-                <p><label for="pass">パスワード：</label></p>
-                <input type="password" id="pass" name="pass" required class="semiLongInput">
-                
-                <p><label for="pass_confirm">パスワード（確認用）：</label></p>
-                <input type="password" id="pass_confirm" name="pass_confirm" required class="semiLongInput">
-                
-                <p>メールマガジン</p>
-                <div>
-                    <input type="radio" id="yes" name="m_flag" value="1" checked>
-                    <label for="yes">受信する</label>
-                    <input type="radio" id="no" name="m_flag" value="0">
-                    <label for="no">受信しない</label>                    
-                </div>
+        <p><label for="name">氏名：</label></p>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          class="semiLongInput"
+        />
 
-            </div>
+        <p><label for="birthday">生年月日：</label></p>
+        <input
+          type="date"
+          id="birthday"
+          name="birthday"
+          required
+          class="middleInput"
+        />
 
-            <div class="centerBtn">
-                <button type="submit" name="btn" value="login" class="btn150">登録する</button>
-            </div>
+        <p>性別：</p>
+        <div>
+          <input type="radio" id="man" name="gender" value="1" />
+          <label for="man">男性</label>
+          <input type="radio" id="woman" name="gender" value="2" />
+          <label for="woman">女性</label>
+          <input type="radio" id="other" name="gender" value="3" />
+          <label for="other">その他（回答しない）</label>
+        </div>
 
-        </form>
+        <p><label for="tel">電話番号：</label></p>
+        <input type="tel" id="tel" name="tel" required class="middleInput" />
 
-    </div>
-    </main>
+        <p><label for="zip">郵便番号：</label></p>
+        <input type="text" id="zip" name="zip" required class="shortInput" />
+
+        <p><label for="address">住所：</label></p>
+        <input type="text" id="address" name="address1" required />
+
+        <p></p>
+        <input
+          type="text"
+          id="address2"
+          name="address2"
+          required
+          placeholder="番地"
+        />
+
+        <p></p>
+        <input
+          type="text"
+          id="address3"
+          name="address3"
+          placeholder="マンション名以下（任意）"
+        />
+
+        <p><label for="pass">パスワード：</label></p>
+        <input
+          type="password"
+          id="pass"
+          name="pass"
+          required
+          class="semiLongInput"
+        />
+
+        <p><label for="pass_confirm">パスワード（確認用）：</label></p>
+        <input
+          type="password"
+          id="pass_confirm"
+          name="pass_confirm"
+          required
+          class="semiLongInput"
+        />
+
+        <p>メールマガジン</p>
+        <div>
+          <input type="radio" id="yes" name="m_flag" value="1" checked />
+          <label for="yes">受信する</label>
+          <input type="radio" id="no" name="m_flag" value="0" />
+          <label for="no">受信しない</label>
+        </div>
+      </div>
+
+      <div class="centerBtn">
+        <button type="submit" name="btn" value="login" class="btn150">
+          登録する
+        </button>
+      </div>
+    </form>
+  </div>
+</main>
 {% endblock %}

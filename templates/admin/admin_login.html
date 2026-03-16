@@ -1,10 +1,23 @@
-{% extends "layout.html" %}
-
-{% block content %}
+{% extends "layout.html" %} {% block content %}
 <main>
-  <h1>管理者ログイン</h1>
+  <h1>管理者ページログイン</h1>
 
-  <p class="preparation">このページは準備中です…</p>
+  <form action="/admin_login_process" method="post">
+    <div class="loginInputs">
+      <p>
+        <label for="admin_id">管理者ID：</label>
+        <input type="text" id="admin_id" name="admin_id" required />
+      </p>
+      <p>
+        <label for="password">パスワード：</label>
+        <input type="password" id="password" name="password" required />
+      </p>
+    </div>
+
+    <p class="loginBtn">
+      <button type="submit" name="btn" value="login">ログイン</button>
+    </p>
+  </form>
 </main>
 
 {% endblock %}

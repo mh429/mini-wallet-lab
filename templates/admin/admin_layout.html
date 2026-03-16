@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MINI WALLET Lab</title>
+    <!-- フォント -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- CSS -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/destyle.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <div id="loading">
+      <div class="spinner"></div>
+    </div>
+
+    <header>
+      <div class="top">
+        <a href="/"
+          ><p class="storeName">
+            <span class="upperCase">mini wallet l</span>ab
+          </p></a
+        >
+        <p>-管理者ページ-</p>
+
+        <nav>
+          <div class="menu2">
+            <!-- <p>ログイン：{{ admin_name }}　さん</p> -->
+
+            <!-- postはformしかダメ。getならaタグでOK -->
+            <form action="/admin_logout" method="post">
+              <button type="submit" name="btn" value="logout">
+                ログアウト
+              </button>
+            </form>
+          </div>
+        </nav>
+      </div>
+
+      <div class="bottom">
+        <nav>
+          <ul class="menu3 upperCase">
+            <li><a href="{{url_for('admin.admin_top')}}">トップ</a></li>
+            <li><a href="{{url_for('admin.admin_order')}}">注文情報</a></li>
+            <!-- app.py の @app.route の下にある products という関数を url_for に指定すると、
+                    その関数を持つ @app.route にルーティングしてくれる。 -->
+            <li><a href="{{url_for('pages.about')}}">商品情報</a></li>
+            <li><a href="{{url_for('pages.news')}}">ユーザ情報</a></li>
+            <li><a href="{{url_for('pages.store')}}">管理者情報</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    {% block content %} {% endblock %}
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>

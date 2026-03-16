@@ -1,12 +1,10 @@
-{% extends "layout.html" %}
-
-{% block content %}
+{% extends "layout.html" %} {% block content %}
 <main>
-    <h1>エラー</h1>
-    <p class="errorText">{{err_msg}}</p>
-    <div class="errorBackBtn">
-        <button  onclick="history.back()">戻る</button>
-    </div>    
+  <h1>エラー</h1>
+  <p class="errorText">{{err_msg}}</p>
+  <div class="errorBackBtn">
+    <button onclick="history.back()">戻る</button>
+  </div>
 </main>
 
 {% endblock %}

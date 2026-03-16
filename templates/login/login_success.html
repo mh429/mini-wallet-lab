@@ -1,13 +1,11 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} {% block content %}
+<main>
+  <div class="result">
+    <h2>ログインしました！</h2>
 
-{% block content %}
-    <main>
-        <div class="result">
-            <h2>ログインしました！</h2>
-
-            <div><a href="{{url_for('cart.cart')}}">カートへ</a></div>
-            <div><a href="{{url_for('mypage.mypage')}}">マイページへ</a></div>
-        </div>
-    </main>
+    <div><a href="{{url_for('cart.cart')}}">カートへ</a></div>
+    <div><a href="{{url_for('mypage.mypage')}}">マイページへ</a></div>
+  </div>
+</main>
 
 {% endblock %}

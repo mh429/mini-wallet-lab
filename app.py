@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request
+from flask import Flask, render_template, request
 from blueprints.pages import pages_bp
 from blueprints.login import login_bp
 from blueprints.member_registration import member_registration_bp
@@ -20,23 +20,26 @@ app.register_blueprint(search_bp)
 app.register_blueprint(mypage_bp)
 app.register_blueprint(admin_bp)
 
+
 # 全ページ共通
 @app.context_processor
 def inject_user():
-    #cookieからユーザ名を取得。存在しない場合はNoneが格納される
-    user_name = request.cookies.get('user_name')
+    # cookieからユーザ名を取得。存在しない場合はNoneが格納される
+    user_name = request.cookies.get("user_name")
     return dict(user_name=user_name)
+
 
 # ==============================
 # HOME画面表示処理('/')
 # ==============================
-@app.route('/')
+@app.route("/")
 def index():
-    #HOME画面を表示
-    return render_template('index.html')
+    # HOME画面を表示
+    return render_template("index.html")
+
 
 # ==============================
 # アプリケーション実行
 # ==============================
-if __name__ == '__main__':
-    app.run(host='localhost',port=5000,debug=True)
+if __name__ == "__main__":
+    app.run(host="localhost", port=5000, debug=True)

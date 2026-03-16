@@ -1,58 +1,58 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} {% block content %}
+<main>
+  <div class="contentsWrapper">
+    <section class="selectBar">
+      <div class="selector">
+        <p>Series:</p>
+        <p onclick="filterSeries('Just Day')" class="seriesFilter">JustDay</p>
+        <p>/</p>
+        <p onclick="filterSeries('Someday')" class="seriesFilter">Someday</p>
+      </div>
+      <div class="selector">
+        <p>Color:</p>
+        <div onclick="filterColor('Yellow')" class="colorFilter yellow"></div>
+        <div onclick="filterColor('Pink')" class="colorFilter Pink"></div>
+        <div onclick="filterColor('Blue')" class="colorFilter Blue"></div>
+        <div onclick="filterColor('Purple')" class="colorFilter Purple"></div>
+        <div onclick="filterColor('Green')" class="colorFilter Green"></div>
+        <div onclick="filterColor('Black')" class="colorFilter Black"></div>
+        <div onclick="filterColor('Brown')" class="colorFilter Brown"></div>
+      </div>
+      <div>
+        <p onclick="filterSeries('All')" class="seriesFilter">All</p>
+      </div>
+    </section>
 
-{% block content %}
-    <main>
-        <div class="contentsWrapper">
+    <section class="productsSection">
+      {% for product in products %}
+      <div
+        class="productWrapper"
+        data-series="{{product.series}}"
+        data-color="{{product.color}}"
+      >
+        <a href="{{url_for('products.product_detail', product_id=product.id)}}">
+          <div class="productThumb">
+            <div class="imageWraper">
+              <img
+                src="{{ url_for('static', filename=product.image_path) }}"
+                alt="商品画像"
+              />
+            </div>
+            <p class="series">{{product.series}}</p>
+            <p class="color">{{product.color_detail}}</p>
+            <p class="price">￥{{ "{:,}".format(product.price) }}</p>
+          </div>
+        </a>
+      </div>
 
-            <section class="selectBar">
-
-                <div class="selector">
-                    <p>Series:</p>
-                    <p onclick="filterSeries('Just Day')" class="seriesFilter">JustDay</p>
-                    <p>/</p>
-                    <p onclick="filterSeries('Someday')" class="seriesFilter">Someday</p>
-                </div>
-                <div class="selector">
-                    <p>Color:</p>
-                    <div onclick="filterColor('Yellow')" class="colorFilter yellow"></div>
-                    <div onclick="filterColor('Pink')" class="colorFilter Pink"></div>
-                    <div onclick="filterColor('Blue')" class="colorFilter Blue"></div>
-                    <div onclick="filterColor('Purple')" class="colorFilter Purple"></div>
-                    <div onclick="filterColor('Green')" class="colorFilter Green"></div>
-                    <div onclick="filterColor('Black')" class="colorFilter Black"></div>
-                    <div onclick="filterColor('Brown')" class="colorFilter Brown"></div>
-                </div>
-                <div>
-                    <p onclick="filterSeries('All')" class="seriesFilter">All</p>
-                </div>
-            </section>
-
-            <section class="productsSection">
-
-                {% for product in products %}
-                <div class="productWrapper" data-series="{{product.series}}" data-color="{{product.color}}">
-                    <a href="{{url_for('products.product_detail', product_id=product.id)}}">
-                        <div class="productThumb">
-                            <div class="imageWraper">
-                                <img src="{{ url_for('static', filename=product.image_path) }}" alt="商品画像">                                
-                            </div>
-                            <p class="series">{{product.series}}</p>
-                            <p class="color">{{product.color_detail}}</p>
-                            <p class="price">￥{{ "{:,}".format(product.price) }}</p>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- product_detailはFlaskの関数名（def product_detail） 
+      <!-- product_detailはFlaskの関数名（def product_detail） 
                 Flask は
                 「関数名 → @app.route で紐づいているURL」
                 を自動で引いてくれる。
                 （http://localhost:5000/products/1　が開く）-->
 
-                {% endfor %}
-
-            </section>
-
-        </div>
-    </main>
+      {% endfor %}
+    </section>
+  </div>
+</main>
 {% endblock %}

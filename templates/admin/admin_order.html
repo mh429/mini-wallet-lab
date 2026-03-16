@@ -1,0 +1,57 @@
+{% extends "admin/admin_layout.html" %}
+{% block content %}
+
+<main>
+  <h1>注文情報</h1>
+
+  <div>
+    <p>絞り込み：</p>
+    <p>注文済み</p>
+    <p>発送済み</p>
+    <p>キャンセル</p>
+  </div>
+
+  <div>
+    <table>
+      <tr>
+        <th>注文ID</th>
+        <th>注文日</th>
+        <th>注文者</th>
+        <th>支払方法</th>
+        <th>状態</th>
+        <th>注文明細</th>
+        <th>送り状</th>
+      </tr>
+
+      {% for o in order %}
+      <tr>
+        <td>{{ o.id }}</td>
+        <td>{{ o.order_date }}</td>
+        <td>{{ o.orderer }}</td>
+        <td>{{ o.payment_str }}</td>
+        <td>
+          <form action="/update_prosess" method="post">
+            <select name="prosessing">
+              <option value="1" {% if o.processing == 1 %}selected{% endif %}>受注処理待ち</option>
+              <option value="2" {% if o.processing == 2 %}selected{% endif %}>発送待ち</option>
+              <option value="3" {% if o.processing == 3 %}selected{% endif %}>完了</option>
+              <option value="0" {% if o.processing == 0 %}selected{% endif %}>キャンセル</option>
+            </select>
+          <button type="submit">更新</button>
+          </form>
+        </td>
+        <td>
+          <a href="{{url_for('admin.admin_order_detail', order_id=o.id)}}" target="_blank">表示</a>
+          <!-- <button>表示</button> -->
+          <button>印刷</button>
+        </td>
+        <td>
+          {% if o.processing == 1 %}<button>印刷</button>{% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</main>
+
+{% endblock %}

@@ -1,35 +1,29 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} {% block content %}
+<main>
+  <h1>ログイン</h1>
+  <!-- <div class="contentsWrapper"> -->
+  <form action="/login_success" method="post">
+    <div class="loginInputs">
+      <p>
+        <label for="user_id">ユーザID (メールアドレス)：</label>
+        <input type="text" id="user_id" name="user_id" required />
+      </p>
+      <p>
+        <label for="password">パスワード：</label>
+        <input type="password" id="password" name="password" required />
+      </p>
+    </div>
 
-{% block content %}
-    <main>
-        <h1>ログイン</h1>
-        <!-- <div class="contentsWrapper"> -->
-            <form action="/login_success" method="post">
-
-                <div class="loginInputs">
-                    <p>
-                        <label for="user_id">ユーザID (メールアドレス)：</label>
-                        <input type="text" id="user_id" name="user_id" required>
-                    </p>
-                    <p>
-                        <label for="password">パスワード：</label>
-                        <input type="password" id="password" name="password" required>
-                    </p>
-                </div>
-
-                <p class="loginBtn">
-                    <button type="submit" name="btn" value="login">ログイン</button>
-                </p>
-            </form>
-            <form action="/member_registration" method="get">
-                <p class="toMemberRegistrationBtn">
-                    <button type="submit" name="btn" value="login">新規会員登録</button>
-                </p>
-            </form>
-        <!-- </div> -->
-    </main>
+    <p class="loginBtn">
+      <button type="submit" name="btn" value="login">ログイン</button>
+    </p>
+  </form>
+  <form action="/member_registration" method="get">
+    <p class="toMemberRegistrationBtn">
+      <button type="submit" name="btn" value="login">新規会員登録</button>
+    </p>
+  </form>
+  <!-- </div> -->
+</main>
 
 {% endblock %}
-
-
-

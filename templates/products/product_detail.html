@@ -1,51 +1,52 @@
-{% extends "layout.html" %}
+{% extends "layout.html" %} {% block content %}
+<main>
+  <div class="contentsWrapper">
+    <section class="backBtn">
+      <p onclick="history.back()">>戻る</p>
+    </section>
 
-{% block content %}
-    <main>
-        <div class="contentsWrapper">
+    <section class="productDetailSection">
+      <div class="left">
+        <img
+          src="{{ url_for('static', filename=product.image_path) }}"
+          alt="商品画像"
+        />
+      </div>
 
-            <section class="backBtn">
-                <p onclick="history.back()">>戻る</p>
-            </section>
+      <div class="right">
+        <p class="series">{{product.series}}</p>
+        <p class="color">{{product.color_detail}}</p>
+        <p class="price">￥{{ "{:,}".format(product.price) }}</p>
 
-            <section class="productDetailSection">
+        <form action="/add_to_cart" method="GET">
+          <div class="quantityCart">
+            {% if product.stock > 0 %}
+            <p>
+              数量:
+              <input
+                type="number"
+                name="quantity"
+                value="1"
+                min="1"
+                max="{{product.stock}}"
+              />
+            </p>
+            <button type="submit">カートに入れる</button>
 
-                <div class="left">
-                    <img src="{{ url_for('static', filename=product.image_path) }}" alt="商品画像">
-                </div>
+            {% else %}
 
-                <div class="right">
-                    <p class="series">{{product.series}}</p>
-                    <p class="color">{{product.color_detail}}</p>
-                    <p class="price">￥{{ "{:,}".format(product.price) }}</p>
+            <p>数量: 在庫がありません</p>
+            <button disabled>カートに入れる</button>
 
-                    <form action="/add_to_cart" method="GET">
-                        <div class="quantityCart">
+            {% endif %}
+          </div>
+          <p class="id">商品番号: {{ "%05d"|format(product.id) }}</p>
+          <input type="hidden" name="product_id" value="{{ product.id }}" />
+        </form>
 
-                            {% if product.stock > 0 %}
-                                <p>数量: <input type="number" name="quantity" value="1" min="1" max="{{product.stock}}"></p>
-                                <button type="submit">カートに入れる</button>
-
-                            {% else %}
-
-                                <p>数量: 在庫がありません</p>
-                                <button disabled>カートに入れる</button>
-
-                            {% endif %}
-
-                        </div>
-                        <p class="id">商品番号: {{ "%05d"|format(product.id) }}</p>
-                        <input type="hidden" name="product_id" value="{{ product.id }}">
-                    </form>        
-
-                    <p class="caption">{{product.caption}}</p>        
-                </div>
-            </section>
-
-            
-        </div>
-        
-
-
-    </main>
+        <p class="caption">{{product.caption}}</p>
+      </div>
+    </section>
+  </div>
+</main>
 {% endblock %}

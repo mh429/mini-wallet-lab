@@ -1,25 +1,28 @@
-{% extends "layout.html" %}
-
-{% block content %}
-    <main class="home">
-        <section class="heroSection"
-        style="background-image: url('{{ url_for('static', filename='images/someday.jpg') }}');
+{% extends "layout.html" %} {% block content %}
+<main class="home">
+  <section
+    class="heroSection"
+    style="background-image: url('{{ url_for('static', filename='images/someday.jpg') }}');
         width: 100%;
         height: 750px;
         background-position: center 47%;
         background-size: cover;
-        background-repeat: no-repeat;">
-            <div class="heroSectionInner">
-                <h1><span class="upperCase">mini wallet l</span>ab</h1>
-            </div>
-        </section>
+        background-repeat: no-repeat;"
+  >
+    <div class="heroSectionInner">
+      <h1><span class="upperCase">mini wallet l</span>ab</h1>
+    </div>
+  </section>
 
-        <section class="captionSection">
-            <p><span class="upperCase">mini wallet l</span>ab では、キャッシュレス時代にぴったりの、<br>
-                小さなお財布を制作しています。</p>
-        </section>
+  <section class="captionSection">
+    <p>
+      <span class="upperCase">mini wallet l</span>ab
+      では、キャッシュレス時代にぴったりの、<br />
+      小さなお財布を制作しています。
+    </p>
+  </section>
 
-        <!-- <section class="adProducts">
+  <!-- <section class="adProducts">
             <div>
                 <div>
                     <div>
@@ -50,7 +53,6 @@
                 </div>
             </div>
         </section> -->
-
-    </main>    
+</main>
 
 {% endblock %}

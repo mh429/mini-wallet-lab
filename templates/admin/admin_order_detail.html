@@ -1,0 +1,108 @@
+<main>
+  <h1>ご注文明細書</h1>
+  <hr>
+
+  <div>
+    <table>
+      <tr>
+        <th>受注番号：</th>
+        <td>{{ order.id }}</td>
+      </tr>
+      <tr>
+        <th>ご注文日：</th>
+        <td>{{ order.order_date }}</td>
+      </tr>
+      <tr>
+        <th>お支払方法：</th>
+        <td>{{ order.payment_str }}</td>
+      </tr>
+    </table>
+
+    <h2>注文者情報</h2>
+    <table>
+      <tr>
+        <th>ご注文者：</th>
+        <td>{{ order.orderer }}　様</td>
+      </tr>
+      <tr>
+        <th>会員ID：</th>
+        <td>{{ order.member_id }}</td>
+      </tr>
+      <tr>
+        <th>メールアドレス：</th>
+        <td>{{ order.mail }}</td>
+      </tr>
+      <tr>
+        <th>電話番号：</th>
+        <td>{{ order.tel }}</td>
+      </tr>
+    </table>
+
+    <h2>配送先情報</h2>
+    <table>
+      <tr>
+        <th>郵便番号：</th>
+        <td>{{ order.zip }}</td>
+      </tr>
+      <tr>
+        <th>住所：</th>
+        <td>{{ order.address1 }}</td>
+        <td>{{ order.address2 }}</td>
+        <td>{{ order.address3 }}</td>
+      </tr>
+      <tr>
+        <th>宛先者：</th>
+        <td>{{ order.recipient }}　様</td>
+      </tr>
+    </table>
+  </div>
+
+  <hr>
+  <div>
+    <h2>ご注文明細</h2>
+    <table>
+      <tr>
+        <th>商品番号</th>
+        <th>商品名</th>
+        <th>単価</th>
+        <th>数量</th>
+        <th>価格</th>
+      </tr>
+      {% for item in order_detail %}      
+        <tr>
+          <td>{{ item.product_id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.price }}円</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.subtotal }}円</td>
+        </tr>
+      {% endfor %}
+    </table>
+
+    <table>
+      <tr>
+        <th>合計</th>
+      </tr>      
+      <tr>
+        <td>{{ total }}円</td>
+      </tr>
+    </table>
+
+  <hr>
+  <div>
+    <h2>処理担当</h2>
+    <table>
+      <tr>
+        <th>受注処理</th>
+        <th>発送</th>
+        <th>最終確認</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+
+</main>
