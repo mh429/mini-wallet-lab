@@ -22,7 +22,8 @@ USE db_mini_wallet_lab;
 -- 使用中なら、先にDB切り替えてから削除
 USE mysql;
 drop database db_mini_wallet_lab;
-
+-- テーブル削除
+DROP TABLE テーブル名;
 
 
 -- [テーブルの一覧を確認する]

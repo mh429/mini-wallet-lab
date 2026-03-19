@@ -476,7 +476,7 @@ def admin_product_edit(product_id):
   )
 
 # ================================================
-# 商品登録処理('/admin_product_update')
+# 商品編集処理('/admin_product_update')
 # ================================================
 @admin_bp.route("/admin_product_update", methods=["POST"])
 def admin_product_update():

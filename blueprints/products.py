@@ -19,7 +19,8 @@ def products():
         ON p.series_id = s.id
         INNER JOIN t_color c
         ON p.color_id = c.id
-        WHERE p.is_active = 1;
+        WHERE p.is_active = 1
+        ORDER BY id ASC;
     """
 
     con = connect_db()  # コネクション

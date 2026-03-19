@@ -38,11 +38,13 @@
               <option value="3" {% if o.processing == 3 %}selected{% endif %}>完了</option>
               <option value="0" {% if o.processing == 0 %}selected{% endif %}>キャンセル</option>
             </select>
-          <button type="submit">更新</button>
+          <button type="submit">更新する</button>
           </form>
         </td>
         <td>
-          <a href="{{url_for('admin.admin_order_detail', order_id=o.id)}}" target="_blank">表示</a>
+          <a href="{{url_for('admin.admin_order_detail', order_id=o.id)}}" target="_blank">
+            <button>表示</button>
+          </a>
         </td>
       </tr>
       {% endfor %}
