@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, make_response, redirect
 from datetime import datetime
 import mysql.connector
 import os
+import glob
 from flask import flash
 
 # Blueprint名はadmin
@@ -367,10 +368,10 @@ def admin_product_add():
   )
 
 # ================================================
-# 商品登録処理('/admin_product_add_insert')
+# 商品登録処理('/admin_product_insert')
 # ================================================
-@admin_bp.route("/admin_product_add_insert", methods=["POST"])
-def admin_product_add_insert():
+@admin_bp.route("/admin_product_insert", methods=["POST"])
+def admin_product_insert():
 
   name = request.form.get("name")
   price = request.form.get("price")
@@ -473,6 +474,94 @@ def admin_product_edit(product_id):
     "admin/admin_product_edit.html", 
     product=product
   )
+
+# ================================================
+# 商品登録処理('/admin_product_update')
+# ================================================
+@admin_bp.route("/admin_product_update", methods=["POST"])
+def admin_product_update():
+
+  product_id = request.form.get("product_id")
+  name = request.form.get("name")
+  price = request.form.get("price")
+  series_id = request.form.get("series_id")
+  color_id = request.form.get("color_id")
+  color_detail = request.form.get("color_detail")
+  caption = request.form.get("caption")
+  stock = request.form.get("stock")
+  img_file = request.files['img_file']
+  search_key = request.form.get("search_key")
+  is_active = request.form.get("is_active")
+
+  # SELECTを作成
+  sql = """
+  UPDATE t_product
+  SET
+    name=%s,
+    price=%s,
+    series_id=%s,
+    color_id=%s,
+    color_detail=%s,
+    caption=%s,
+    stock=%s,
+    search_key=%s,
+    is_active=%s
+  WHERE id=%s
+  """
+
+  data = (
+    name,
+    price,
+    series_id,
+    color_id,
+    color_detail,
+    caption,
+    stock,
+    search_key,
+    is_active,
+    product_id
+  )
+
+  # DB接続からSQL文の発行、commit処理、DB切断
+  con = connect_db()  # コネクション
+  cur = con.cursor()
+  cur.execute(sql, data)
+
+  # 画像が選択された場合のみ更新
+  # and以下でファイルが未選択でもtrueになるのを防いでいる
+  if img_file and img_file.filename != "":
+    UPLOAD_FOLDER = 'static/images/products'
+
+    # 既存画像削除
+    # globはファイル検索するPythonの標準機能
+    # glob.glob(検索条件)
+    old_files = glob.glob(os.path.join(UPLOAD_FOLDER, str(product_id) + ".*"))
+    for file in old_files:
+      os.remove(file)
+
+    # 差替え画像登録
+    ext = os.path.splitext(img_file.filename)[1].lower() # 拡張子を取得
+    filename = str(product_id) + ext
+    path = os.path.join(UPLOAD_FOLDER, filename)
+    img_file.save(path)
+    image_path = "images/products/" + filename
+
+    sql = """
+    UPDATE t_product
+    SET image_path=%s
+    WHERE id=%s
+    """
+    cur.execute(sql,(image_path,product_id))
+
+  con.commit()  # コネクション
+  cur.close()
+  con.close()  # コネクション
+
+  # 次のページ専用の一時メッセージ
+  flash("商品情報を更新しました")
+  # リダイレクト
+  response = make_response(redirect("/admin_products"))
+  return response
 
 # ==============================
 # DB接続

@@ -8,13 +8,13 @@
     <button onclick="history.back()">戻る</button>
   </div>
 
-  <form action="/admin_product_add_insert" method="post" enctype="multipart/form-data">
+  <form action="/admin_product_insert" method="post" enctype="multipart/form-data">
     <!-- データを符号化（エンコード）してサーバーへ送信する。
      通常のテキストデータとは異なり、バイナリデータ（画像やPDFなど）を分割して送信し、サーバー側が正しく受け取れる形式にする。  -->
 
     <div>
       <p>*は入力必須</p>
-      
+
       <table>
         <tr>
           <th>商品ID</th>
@@ -61,7 +61,7 @@
         </tr>
         <tr>
           <th>在庫数*</th>
-          <td><input type="number" name="stock" required></td>
+          <td><input type="number" name="stock" min="0" required></td>
         </tr>
         <tr>
           <th>商品画像*</th>
@@ -69,7 +69,7 @@
         </tr>
         <tr>
           <th>画像プレビュー</th>
-          <td><img id="img_preview" src="" width="440"></td>
+          <td><img id="img_preview" src="" width="440" style="display:none;"></td>
         </tr>
         <tr>
           <th>検索キーワード</th>

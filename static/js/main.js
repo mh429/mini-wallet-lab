@@ -55,6 +55,9 @@ document.getElementById("img_file").addEventListener("change", function(e){
     const reader = new FileReader()
     reader.onload = function(event){
       document.getElementById("img_preview").src = event.target.result
+      // 表示切替
+      document.getElementById("img_preview").style.display="block";
+      document.getElementById("current_img").style.display="none";
     }
     reader.readAsDataURL(file)
   }
