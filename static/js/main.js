@@ -15,12 +15,8 @@ window.addEventListener("load", function () {
 // ---------------------------------------
 
 // 商品絞り込み
-
 function filterSeries(series) {
-  console.log("test");
-
   const products = document.querySelectorAll(".productWrapper");
-
   products.forEach((p) => {
     if (series === "All" || p.dataset.series === series) {
       p.style.display = "block";
@@ -29,12 +25,8 @@ function filterSeries(series) {
     }
   });
 }
-
 function filterColor(color) {
-  console.log("test2");
-
   const products = document.querySelectorAll(".productWrapper");
-
   products.forEach((p) => {
     if (p.dataset.color === color) {
       p.style.display = "block";
@@ -44,14 +36,9 @@ function filterColor(color) {
   });
 }
 
-
 // 検索ボックス
-
 function toggleInvisible() {
-  console.log("test3");
-
   const searchBox = document.querySelector(".searchBox");
-
   searchBox.classList.toggle("invisible");
 }
 
@@ -61,7 +48,6 @@ function toggleInvisible() {
 // ---------------------------------------
 
 // 登録商品画像プレビュー
-
 document.getElementById("img_file").addEventListener("change", function(e){
   const file = e.target.files[0]
   if(file){
@@ -76,13 +62,9 @@ document.getElementById("img_file").addEventListener("change", function(e){
   }
 })
 
-
 // 注文情報絞り込み
-
 function filterProsessing(processing) {
-
   const orders = document.querySelectorAll(".adminOrder");
-
   orders.forEach((o) => {
     if (processing === "All" || o.dataset.processing === String(processing)) {
       o.style.display = "table-row";

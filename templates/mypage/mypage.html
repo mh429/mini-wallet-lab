@@ -5,87 +5,124 @@
       <h1>マイページ</h1>
 
       {% if user_info %}
+        <h2>＜会員情報＞</h2>
+                 <table>
+            <tr>
+              <th><p>メールアドレス</p></th>
+              <td><p>{{ user_info.id }}</p></td>
+            </tr>
+            <tr>
+              <th><p>氏名</p></th>
+              <td><p>{{ user_info.name }} 様</p></td>
+            </tr>
+            <tr>
+              <th><p>生年月日</p></th>
+              <td><p>{{ user_info.birthday_str }}</p></td>
+            </tr>
+            <tr>
+              <th><p>性別</p></th>
+              <td><p>{{ user_info.gender_str }}</p></td>
+            </tr>
+            <tr>
+              <th><p>電話番号</p></th>
+              <td><p>{{ user_info.tel }}</p></td>
+            </tr>
+            <tr>
+              <th><p>郵便番号</p></th>
+              <td><p>{{ user_info.zip }}</p></td>
+            </tr>
+            <tr>
+              <th><p>住所</p></th>
+              <td><p>{{ user_info.address1 }}</p></td>
+            </tr>
+            <tr>
+              <th></th>
+              <td><p>{{ user_info.address2 }}</p></td>
+            </tr>
+            <tr>
+              <th></th>
+              <td><p>{{ user_info.address3 }}</p></td>
+            </tr>
+            <tr>
+              <th><p>メールマガジン</p></th>
+              <td><p>{{ user_info.m_flag_str }}</p></td>
+            </tr>
+            <tr>
+              <th><p>パスワード</p></th>
+              <td><p>**************</p></td>
+            </tr>
+          </table>
+        <!-- <div class="memberInfo">
+          <p>メールアドレス</p>
+          <p>{{ user_info.id }}</p>
+          <p>氏名</p>
+          <p>{{ user_info.name }} 様</p>
+          <p>生年月日</p>
+          <p>{{ user_info.birthday_str }}</p>
+          <p>性別</p>
+          <p>{{ user_info.gender_str }}</p>
+          <p>電話番号</p>
+          <p>{{ user_info.tel }}</p>
+          <p>郵便番号</p>
+          <p>{{ user_info.zip }}</p>
+          <p>住所</p>
+          <p>{{ user_info.address1 }}</p>
+          <p></p>
+          <p>{{ user_info.address2 }}</p>
+          <p></p>
+          <p>{{ user_info.address3 }}</p>
+          <p>メールマガジン</p>
+          <p>{{ user_info.m_flag_str }}</p>
+        </div> -->
 
-      <h2>＜会員情報＞</h2>
+        <div>
+          <button>会員情報を変更する</button>
+        </div>
 
-      <div class="memberInfo">
-        <p>メールアドレス</p>
-        <p>{{ user_info.id }}</p>
+        <h2>＜購入履歴＞</h2>
+        {% if orders %} 
+          {% for o in orders %}
+            <div class="orderHistory">
+              <p>受注番号: {{ "%06d"|format(o.id) }}</p>
+              <p>ご注文日: {{ o.order_date_str }}</p>
+              <p>ステータス: {{ o.processing }}</p>
 
-        <p>氏名</p>
-        <p>{{ user_info.name }} 様</p>
-
-        <p>生年月日</p>
-        <p>{{ user_info.birthday_str }}</p>
-
-        <p>性別</p>
-        <p>{{ user_info.gender_str }}</p>
-
-        <p>電話番号</p>
-        <p>{{ user_info.tel }}</p>
-
-        <p>郵便番号</p>
-        <p>{{ user_info.zip }}</p>
-
-        <p>住所</p>
-        <p>{{ user_info.address1 }}</p>
-
-        <p></p>
-        <p>{{ user_info.address2 }}</p>
-
-        <p></p>
-        <p>{{ user_info.address3 }}</p>
-
-        <p>メールマガジン</p>
-        <p>{{ user_info.m_flag_str }}</p>
-      </div>
-
-      <h2>＜購入履歴＞</h2>
-
-      {% if order_history %} {% for order in order_history %}
-
-      <div class="orderHistory">
-        <p>購入ID: {{ "%06d"|format(order.order_id) }}</p>
-        <p>購入日: {{ order.order_date }}</p>
-
-        <p>---購入内容---</p>
-        <div class="orderDetailInfo">
-          {% for item in order.order_items %}
-          <p>{{ item.name }}</p>
-          <p class="quantity">数量: {{ item.quantity }}</p>
+              <a href="{{url_for('mypage.mypage_order_detail', order_id=o.id)}}" target="_blank">
+                <button>注文明細</button>
+              </a>
+            </div>
           {% endfor %}
-        </div>
-      </div>
+        {% else %}
+          <p>購入履歴はありません</p>
+        {% endif %}
+      
 
-      {% endfor %} {% else %}
 
-      <p>購入履歴はありません</p>
+      {% else %}
 
-      {% endif %} {% else %}
+        <h2>ログインしていません</h2>
 
-      <h2>ログインしていません</h2>
+        <form action="/login_success" method="post">
+          <div class="loginInputs">
+            <p>
+              <label for="user_id">ユーザID (メールアドレス)：</label>
+              <input type="text" id="user_id" name="user_id" required />
+            </p>
+            <p>
+              <label for="password">パスワード：</label>
+              <input type="password" id="password" name="password" required />
+            </p>
+          </div>
 
-      <form action="/login_success" method="post">
-        <div class="loginInputs">
-          <p>
-            <label for="user_id">ユーザID (メールアドレス)：</label>
-            <input type="text" id="user_id" name="user_id" required />
+          <p class="loginBtn">
+            <button type="submit" name="btn" value="login">ログイン</button>
           </p>
-          <p>
-            <label for="password">パスワード：</label>
-            <input type="password" id="password" name="password" required />
+        </form>
+        <form action="/member_registration" method="get">
+          <p class="toMemberRegistrationBtn">
+            <button type="submit" name="btn" value="login">新規会員登録</button>
           </p>
-        </div>
-
-        <p class="loginBtn">
-          <button type="submit" name="btn" value="login">ログイン</button>
-        </p>
-      </form>
-      <form action="/member_registration" method="get">
-        <p class="toMemberRegistrationBtn">
-          <button type="submit" name="btn" value="login">新規会員登録</button>
-        </p>
-      </form>
+        </form>
 
       {% endif %}
     </div>
