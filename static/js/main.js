@@ -1,6 +1,20 @@
 console.log("main.js loaded");
 
-// ユーザ側の商品絞り込み
+// ---------------------------------------
+// ローディング
+// ---------------------------------------
+
+window.addEventListener("load", function () {
+  const loading = document.getElementById("loading");
+  loading.style.display = "none";
+});
+
+
+// ---------------------------------------
+// ユーザ側
+// ---------------------------------------
+
+// 商品絞り込み
 
 function filterSeries(series) {
   console.log("test");
@@ -30,6 +44,9 @@ function filterColor(color) {
   });
 }
 
+
+// 検索ボックス
+
 function toggleInvisible() {
   console.log("test3");
 
@@ -39,15 +56,11 @@ function toggleInvisible() {
 }
 
 
-// ローディング
+// ---------------------------------------
+// 管理者側
+// ---------------------------------------
 
-window.addEventListener("load", function () {
-  const loading = document.getElementById("loading");
-  loading.style.display = "none";
-});
-
-
-// 管理者側の登録商品画像プレビュー
+// 登録商品画像プレビュー
 
 document.getElementById("img_file").addEventListener("change", function(e){
   const file = e.target.files[0]
@@ -62,3 +75,19 @@ document.getElementById("img_file").addEventListener("change", function(e){
     reader.readAsDataURL(file)
   }
 })
+
+
+// 注文情報絞り込み
+
+function filterProsessing(processing) {
+
+  const orders = document.querySelectorAll(".adminOrder");
+
+  orders.forEach((o) => {
+    if (processing === "All" || o.dataset.processing === String(processing)) {
+      o.style.display = "table-row";
+    } else {
+      o.style.display = "none";
+    }
+  });
+}

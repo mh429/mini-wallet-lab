@@ -6,10 +6,10 @@
 
   <div>
     <p>絞り込み：</p>
-    <p>注文済み</p>
-    <p>発送済み</p>
-    <p>キャンセル</p>
-    <p>全件表示</p>
+    <p onclick="filterProsessing('1')">受注処理待ち</p>
+    <p onclick="filterProsessing('2')">発送待ち</p>
+    <p onclick="filterProsessing('0')">キャンセル</p>
+    <p onclick="filterProsessing('All')">全件表示</p>
   </div>
 
   <div>
@@ -19,12 +19,12 @@
         <th>注文日</th>
         <th>注文者</th>
         <th>支払方法</th>
-        <th>状態</th>
+        <th>ステータス</th>
         <th>注文明細(出荷指示書)</th>
       </tr>
 
       {% for o in order %}
-      <tr>
+      <tr class="adminOrder" data-processing="{{ o.processing }}">
         <td>{{ o.id }}</td>
         <td>{{ o.order_date }}</td>
         <td>{{ o.orderer }}　様</td>

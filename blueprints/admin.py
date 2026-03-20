@@ -8,7 +8,6 @@ from flask import flash
 # Blueprint名はadmin
 admin_bp = Blueprint("admin", __name__)
 
-
 # ==============================
 # admin_login画面表示処理('/admin_login')
 # ==============================
@@ -16,7 +15,6 @@ admin_bp = Blueprint("admin", __name__)
 def admin_login():
   # 画面を表示
   return render_template("admin/admin_login.html")
-
 
 # ================================================
 # ログイン処理('/admin_login_process')
@@ -58,13 +56,18 @@ def admin_login_process():
   else:
     # レスポンスオブジェクトを作成
     response = make_response(redirect("/admin_top"))
-    # # 管理者名をCookieに保存
-    # response.set_cookie(
-    #   "admin_name", admin_info["name"], max_age=60 * 60 * 1
-    # )  # 1時間有効
     # レスポンスオブジェクトを返す
     return response
 
+# ================================================
+# ログアウト処理('/admin_logout_process)
+# ================================================
+@admin_bp.route("/admin_logout_process", methods=["POST"])
+def admin_logout_process():
+  # レスポンスオブジェクトを作成
+  response = make_response(redirect("/admin_login"))
+  # レスポンスオブジェクトを返す
+  return response
 
 # ==============================
 # 管理者トップ画面表示処理('/admin_top')
@@ -231,6 +234,7 @@ def admin_update_processing():
   cur.close()
   con.close()  # コネクション  
 
+  flash("注文ステータスを更新しました")
   response = make_response(redirect("/admin_order"))
   return response
 
@@ -364,7 +368,6 @@ def admin_staff_insert():
   flash("管理者を追加しました")
   response = make_response(redirect("/admin_staff"))
   return response
-
 
 # ================================================
 # 管理者編集画面表示('/admin_staff_edit')
@@ -509,7 +512,6 @@ def admin_product():
     # 状態
     is_active_map = {1: "公開", 0: "非公開"}
     product["is_active_str"] = is_active_map.get(product["is_active"], "未設定")
-
 
   # 会員情報をテンプレートに渡す
   return render_template(
