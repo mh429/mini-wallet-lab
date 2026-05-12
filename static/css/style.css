@@ -456,7 +456,7 @@ footer small {
   display: flex;
   gap: 20px;
 }
-.backBtn:hover {
+.backBtn p:hover {
   opacity: 0.5;
 }
 .backBtn p {
